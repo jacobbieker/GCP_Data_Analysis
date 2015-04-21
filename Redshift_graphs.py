@@ -56,9 +56,9 @@ except ValueError:
     print "Not a String"
 
 try:
-     column_to_graph_input = str(raw_input("Column to Graph: "))
+     column_to_graph_input = int(raw_input("Column to Graph: "))
 except ValueError:
-    print "Not a String"
+    print "Not a Number"
 
 try:
     bin_size_input = float(raw_input('Desired Bin Size: '))
