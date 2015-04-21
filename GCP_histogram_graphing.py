@@ -5,7 +5,7 @@ import numpy as np
 import matplotlib.pyplot as pyplot
 
 #List of the columns for each data type in the CSV file
-redshift_data = 3 #redshift
+redshift = 3 #redshift
 l_sigma = 4 #velocity dispersion in km/s
 e_l_sigma = 5 #uncertainty in l_sigma
 cn_3883 = 6 #CN3883 index fully corrected
@@ -51,7 +51,7 @@ try:
 except ValueError:
     print "Not a String"
 
-print ("Columns available to graph: " + '\n' + "Redshift: " + str(redshift_data) + '\n' + "LSigma: " + str(l_sigma) + '\n' + "CN3883: " + str(cn_3883) + '\n' + "D4000: " + str(d_4000) + '\n' + "LC4668: " + str(lc_4668) + '\n' + "MGB: " + str(l_mgb) + '\n' + "Equiv. Width OII: " + str(e_width_OII) + '\n' + "H zeta A: " + str(l_h_zeta_a) + '\n' + "H dg A: " + str(l_h_dg_a) + '\n' + "Fe4383: " + str(l_fe_4383) + '\n' + "H beta G: " + str(l_h_beta_em) + '\n' + "Fe: " + str(l_fe))
+print ("Columns available to graph: " + '\n' + "Redshift: " + str(redshift) + '\n' + "Sigma: " + str(l_sigma) + '\n' + "CN3883: " + str(cn_3883) + '\n' + "D4000: " + str(d_4000) + '\n' + "LC4668: " + str(lc_4668) + '\n' + "MGB: " + str(l_mgb) + '\n' + "Equiv. Width OII: " + str(e_width_OII) + '\n' + "H zeta A: " + str(l_h_zeta_a) + '\n' + "H dg A: " + str(l_h_dg_a) + '\n' + "Fe4383: " + str(l_fe_4383) + '\n' + "H beta G: " + str(l_h_beta_em) + '\n' + "Fe: " + str(l_fe))
 
 try:
      column_to_graph_input = int(raw_input("Column to Graph: "))
