@@ -1,12 +1,8 @@
 from __future__ import division
 __author__ = 'Jacob'
-import math
-import os
-import sys
 import csv
 import numpy as np
 import matplotlib.pyplot as pyplot
-import matplotlib.mlab as mlab
 
 #List of the columns for each data type in the CSV file
 redshift_data = 3 #redshift
