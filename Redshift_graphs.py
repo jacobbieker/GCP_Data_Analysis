@@ -22,4 +22,6 @@ for line in csv_file:
 
 
 pyplot.hist(redshift_array, bins)
+pyplot.title("Redshift of Field Galaxies with Bin Size = " + str(bin_size))
+pyplot.savefig("Redshift_bin_" + str(bin_size) + ".png")
 pyplot.show()
