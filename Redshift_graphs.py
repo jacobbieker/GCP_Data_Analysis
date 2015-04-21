@@ -63,6 +63,6 @@ try:
 except ValueError:
     print "Not a number"
 
-data = 'GCP_spectroscopicdata.csv'
-create_histogram(name_for_graph_input, data, column_to_graph_input, bin_size_input)
+data_file = 'GCP_spectroscopicdata.csv'
+create_histogram(name_for_graph_input, data_file, column_to_graph_input, bin_size_input)
 
