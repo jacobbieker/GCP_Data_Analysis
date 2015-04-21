@@ -40,7 +40,7 @@ def create_histogram(name_for_graph, data, column_to_graph, bin_size):
         graph_array.append(float(line[column_to_graph]))
 
     pyplot.hist(graph_array, bins)
-    pyplot.title(name_for_graph + " Field Galaxies with Bin Size = " + str(bin_size))
+    pyplot.title(name_for_graph + " For Field Galaxies with Bin Size = " + str(bin_size))
     pyplot.xlabel(name_for_graph)
     pyplot.ylabel("Number (N)")
     pyplot.savefig(name_for_graph + "_bin_" + str(bin_size) + ".png")
