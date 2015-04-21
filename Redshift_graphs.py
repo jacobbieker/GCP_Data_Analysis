@@ -9,7 +9,7 @@ import matplotlib.pyplot as pyplot
 import matplotlib.mlab as mlab
 
 #List of the columns for each data type in the CSV file
-redshift_data = 3
+redshift_data = 3 #redshift
 l_sigma = 4 #velocity dispersion in km/s
 e_l_sigma = 5 #uncertainty in l_sigma
 cn_3883 = 6 #CN3883 index fully corrected
@@ -33,28 +33,38 @@ e_l_h_beta_em = 25 #error in l_h_beta_em
 l_fe = 26 #log10(Fe)=log((Fe5270+F5335)/2) index fully corrected
 e_l_fe = 27 #error in l_fe
 
+
+def create_histogram(name_for_graph, data, column_to_graph, bin_size):
+    bins = np.arange(0.0, 2.1, bin_size)
+    graph_array = []
+    f = open(data)
+    csv_file = csv.reader(f)
+    next(csv_file)
+    for line in csv_file:
+        graph_array.append(float(line[column_to_graph]))
+
+    pyplot.hist(graph_array, bins)
+    pyplot.title(name_for_graph + " Field Galaxies with Bin Size = " + str(bin_size))
+    pyplot.xlabel(name_for_graph)
+    pyplot.ylabel("Number (N)")
+    pyplot.savefig(name_for_graph + "_bin_" + str(bin_size) + ".png")
+    pyplot.show()
+
 try:
-    bin_size = float(raw_input('Desired Bin Size: '))
+     name_for_graph_input = str(raw_input("Name For Graph: "))
+except ValueError:
+    print "Not a String"
+
+try:
+     column_to_graph_input = str(raw_input("Column to Graph: "))
+except ValueError:
+    print "Not a String"
+
+try:
+    bin_size_input = float(raw_input('Desired Bin Size: '))
 except ValueError:
     print "Not a number"
 
 data = 'GCP_spectroscopicdata.csv'
-#bin_size = 0.1
-redshift_array = []
-bins = np.arange(0.0, 2.1, bin_size)
+create_histogram(name_for_graph_input, data, column_to_graph_input, bin_size_input)
 
-f = open(data)
-csv_file = csv.reader(f)
-next(csv_file)
-for line in csv_file:
-    print line[0]
-    print line[3]
-    redshift_array.append(float(line[3]))
-
-
-pyplot.hist(redshift_array, bins)
-pyplot.title("Redshift of Field Galaxies with Bin Size = " + str(bin_size))
-pyplot.xlabel("Redshift (z)")
-pyplot.ylabel("Number (N)")
-pyplot.savefig("Redshift_bin_" + str(bin_size) + ".png")
-pyplot.show()
