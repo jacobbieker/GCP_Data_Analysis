@@ -11,7 +11,7 @@ import matplotlib.mlab as mlab
 try:
     bin_size = float(raw_input('Desired Bin Size: '))
 except ValueError:
-    print "Not a float"
+    print "Not a number"
 
 data = 'GCP_spectroscopicdata.csv'
 #bin_size = 0.1
