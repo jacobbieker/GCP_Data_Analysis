@@ -2,13 +2,19 @@ from __future__ import division
 __author__ = 'Jacob'
 import math
 import os
+import sys
 import csv
 import numpy as np
 import matplotlib.pyplot as pyplot
 import matplotlib.mlab as mlab
 
+try:
+    bin_size = float(raw_input('Desired Bin Size: '))
+except ValueError:
+    print "Not a float"
+
 data = 'GCP_spectroscopicdata.csv'
-bin_size = 0.1
+#bin_size = 0.1
 redshift_array = []
 bins = np.arange(0.0, 2.1, bin_size)
 
