@@ -31,14 +31,20 @@ e_l_fe = 27 #error in l_fe
 
 
 def create_histogram(name_for_graph, data, column_to_graph, bin_size):
-    bins = np.arange(0.0, 2.1, bin_size)
+    max_bin = 0.0
+    min_bin = 0.0
     graph_array = []
     f = open(data)
     csv_file = csv.reader(f)
     next(csv_file)
     for line in csv_file:
         graph_array.append(float(line[column_to_graph]))
+        if float(line[column_to_graph]) > max_bin:
+            max_bin = float(line[column_to_graph]) + bin_size
+        if float(line[column_to_graph]) < min_bin:
+            min_bin = float(line[column_to_graph])
 
+    bins = np.arange(min_bin, max_bin, bin_size)
     pyplot.hist(graph_array, bins)
     pyplot.title(name_for_graph + " For Field Galaxies with Bin Size = " + str(bin_size))
     pyplot.xlabel(name_for_graph)
