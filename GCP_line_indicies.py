@@ -37,7 +37,7 @@ def create_line_indices_graph(name_for_graph, x_axis_name='', y_axis_name='', ma
     graph_two_array = []
     graph_three_array = []
     graph_four_array = []
-    min_value = 0.0
+    min_value = 1.8 #Because of the uncertainty in the measurements for below 1.8 in velocity dispersion
     max_value = 0.0
     f = open(main_data)
     main_csv_file = csv.reader(f)
