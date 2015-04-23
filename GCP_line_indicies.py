@@ -6,7 +6,7 @@ import csv
 
 #List of the columns for each data type in the CSV file
 redshift = 3 #redshift
-l_sigma = 4 #velocity dispersion in km/s
+l_sigma = 4 #log10(Sigma) of velocity dispersion in km/s
 e_l_sigma = 5 #uncertainty in l_sigma
 cn_3883 = 6 #CN3883 index fully corrected
 e_cn_3883 = 7 #error in cn_3883
@@ -53,5 +53,40 @@ def create_line_indices_graph(name_for_graph, x_axis_name='', y_axis_name='', ma
 
         if second_data is not None: #Implies that the rest are empty as well
             x_values = np.arange(min_value, max_value, bin_size)
-            pyplot.figure(0)
-            pyplot.scatter()
+            fig_col_1 = pyplot.figure(1)
+            fig_col_1.scatter(x_values, column_one_to_graph)
+            if column_two_to_graph is not None:
+                fig_col_2 = pyplot.figure(2)
+                fig_col_2.scatter(x_values, column_two_to_graph)
+            if column_three_to_graph is not None:
+                fig_col_3 = pyplot.figure(3)
+                fig_col_3.scatter(x_values, column_three_to_graph)
+            if column_four_to_graph is not None:
+                fig_col_4 = pyplot.figure(4)
+                fig_col_4.scatter(x_values, column_four_to_graph)
+
+        if third_data is not None: #Implies that the rest are empty as well
+            x_values = np.arange(min_value, max_value, bin_size)
+            fig_col_1 = pyplot.figure(1)
+            fig_col_1.scatter(x_values, column_one_to_graph)
+            if column_two_to_graph is not None:
+                fig_col_2 = pyplot.figure(2)
+                fig_col_2.scatter(x_values, column_two_to_graph)
+            if column_three_to_graph is not None:
+                fig_col_3 = pyplot.figure(3)
+                fig_col_3.scatter(x_values, column_three_to_graph)
+            if column_four_to_graph is not None:
+                fig_col_4 = pyplot.figure(4)
+                fig_col_4.scatter(x_values, column_four_to_graph)
+
+            fig2_col_1 = pyplot.figure(21)
+            fig2_col_1.scatter(x_values, column_one_to_graph)
+            if column_two_to_graph is not None:
+                fig2_col_2 = pyplot.figure(22)
+                fig2_col_2.scatter(x_values, column_two_to_graph)
+            if column_three_to_graph is not None:
+                fig2_col_3 = pyplot.figure(23)
+                fig2_col_3.scatter(x_values, column_three_to_graph)
+            if column_four_to_graph is not None:
+                fig2_col_4 = pyplot.figure(24)
+                fig2_col_4.scatter(x_values, column_four_to_graph)

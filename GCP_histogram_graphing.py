@@ -6,7 +6,7 @@ import matplotlib.pyplot as pyplot
 
 #List of the columns for each data type in the CSV file
 redshift = 3 #redshift
-l_sigma = 4 #velocity dispersion in km/s
+l_sigma = 4 #log10(Sigma) of velocity dispersion in km/s
 e_l_sigma = 5 #uncertainty in l_sigma
 cn_3883 = 6 #CN3883 index fully corrected
 e_cn_3883 = 7 #error in cn_3883
