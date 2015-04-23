@@ -29,3 +29,16 @@ e_l_h_beta_em = 25 #error in l_h_beta_em
 l_fe = 26 #log10(Fe)=log((Fe5270+F5335)/2) index fully corrected
 e_l_fe = 27 #error in l_fe
 
+
+def create_line_indices_graph(name_for_graph, data, column_one_to_graph, column_two_to_graph, bin_size):
+    graph_one_array = []
+    graph_two_array = []
+    min_value = 0.0
+    max_value = 0.0
+    f = open(data)
+    csv_file = csv.reader(f)
+    next(csv_file)
+    for line in csv_file:
+        graph_one_array.append(float(line[column_one_to_graph]))
+        graph_two_array.append(float(line[column_two_to_graph]))
+
