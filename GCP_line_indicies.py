@@ -30,7 +30,7 @@ l_fe = 26 #log10(Fe)=log((Fe5270+F5335)/2) index fully corrected
 e_l_fe = 27 #error in l_fe
 
 '''
-create_line_indicies_graph assums that the data is in CSV format, and that the columns are the same for each of the data sets
+create_line_indicies_graph assumes that the data is in CSV format, and that the columns are the same for each of the data sets
 '''
 def create_line_indices_graph(name_for_graph, x_axis_name='', y_axis_name='', main_data='GCP_spectroscopicdata.csv', second_data=None, third_data=None, column_one_to_graph=None, column_two_to_graph=None, column_three_to_graph=None, column_four_to_graph=None, bin_size=0.1):
     graph_one_array = []
@@ -51,7 +51,7 @@ def create_line_indices_graph(name_for_graph, x_axis_name='', y_axis_name='', ma
         if column_four_to_graph is not None:
             graph_four_array.append(float(line[column_four_to_graph]))
 
-        if second_data is not None: #Implies that the rest are empty as well
+        if second_data is None: #Implies that the rest are empty as well
             x_values = np.arange(min_value, max_value, bin_size)
             fig_col_1 = pyplot.figure(1)
             fig_col_1.scatter(x_values, column_one_to_graph)
@@ -65,7 +65,7 @@ def create_line_indices_graph(name_for_graph, x_axis_name='', y_axis_name='', ma
                 fig_col_4 = pyplot.figure(4)
                 fig_col_4.scatter(x_values, column_four_to_graph)
 
-        if third_data is not None: #Implies that the rest are empty as well
+        if third_data is None: #Implies that the rest are empty as well
             x_values = np.arange(min_value, max_value, bin_size)
             fig_col_1 = pyplot.figure(1)
             fig_col_1.scatter(x_values, column_one_to_graph)
