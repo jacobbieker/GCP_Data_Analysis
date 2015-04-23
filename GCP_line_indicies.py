@@ -35,12 +35,20 @@ create_line_indicies_graph assums that the data is in CSV format, and that the c
 def create_line_indices_graph(name_for_graph, x_axis_name='', y_axis_name='', main_data='GCP_spectroscopicdata.csv', second_data='', third_data='', column_one_to_graph='', column_two_to_graph='', column_three_to_graph='', column_four_to_graph='', bin_size=0.1):
     graph_one_array = []
     graph_two_array = []
+    graph_three_array = []
+    graph_four_array = []
     min_value = 0.0
     max_value = 0.0
     f = open(main_data)
-    csv_file = csv.reader(f)
-    next(csv_file)
-    for line in csv_file:
+    main_csv_file = csv.reader(f)
+    next(main_csv_file)
+    for line in main_csv_file:
         graph_one_array.append(float(line[column_one_to_graph]))
-        graph_two_array.append(float(line[column_two_to_graph]))
+        if column_two_to_graph != '':
+            graph_two_array.append(float(line[column_two_to_graph]))
+        if column_three_to_graph != '':
+            graph_three_array.append(float(line[column_three_to_graph]))
+        if column_four_to_graph != '':
+            graph_four_array.append(float(line[column_four_to_graph]))
+
 
