@@ -34,11 +34,12 @@ create_line_indicies_graph assumes that the data is in CSV format, and that the 
 '''
 
 
-def create_line_indices_graph(name_for_graph, x_axis_name='', y_axis_name='', main_data='GCP_spectroscopicdata.csv', second_data=None, third_data=None, column_one_to_graph=None, column_two_to_graph=None, column_one_error_to_graph=None, column_two_error_to_graph=None, bin_size=0.1):
+def create_line_indices_graph(name_for_graph, x_axis_name='', y_axis_name='', main_data='GCP_spectroscopicdata.csv', column_one_to_graph=None, column_two_to_graph=None, column_one_error_to_graph=None, column_two_error_to_graph=None, color_column=None, num_of_colors=1, bin_size=0.1):
     graph_one_array = []
     graph_two_array = []
     graph_one_array_error = []
     graph_two_array_error = []
+    color_graph = []
     min_value = 1.8 #Because of the uncertainty in the measurements for below 1.8 in velocity dispersion
     max_value = 0.0
     f = open(main_data)
@@ -53,6 +54,10 @@ def create_line_indices_graph(name_for_graph, x_axis_name='', y_axis_name='', ma
             graph_one_array_error.append(float(line[column_one_error_to_graph]))
         if column_two_error_to_graph is not None and line[column_two_to_graph] is not '' and line[column_one_to_graph] is not '':
             graph_two_array_error.append(float(line[column_two_error_to_graph]))
+        if column_two_error_to_graph is not None and line[column_two_to_graph] is not '' and line[column_one_to_graph] is not '':
+            color_graph.append((float(line[color_column])))
+
+    sorted_color_graph = sorted(color_graph)
 
     print graph_one_array
     print graph_one_array_error
