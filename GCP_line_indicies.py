@@ -30,63 +30,70 @@ l_fe = 26 #log10(Fe)=log((Fe5270+F5335)/2) index fully corrected
 e_l_fe = 27 #error in l_fe
 
 '''
-create_line_indicies_graph assums that the data is in CSV format, and that the columns are the same for each of the data sets
+create_line_indicies_graph assumes that the data is in CSV format, and that the columns are the same for each of the data sets
 '''
-def create_line_indices_graph(name_for_graph, x_axis_name='', y_axis_name='', main_data='GCP_spectroscopicdata.csv', second_data=None, third_data=None, column_one_to_graph=None, column_two_to_graph=None, column_three_to_graph=None, column_four_to_graph=None, bin_size=0.1):
+
+
+def create_line_indices_graph(name_for_graph, x_axis_name='', y_axis_name='', main_data='GCP_spectroscopicdata.csv', column_one_to_graph=None, column_two_to_graph=None, column_one_error_to_graph=None, column_two_error_to_graph=None, color_column=None, num_of_colors=1, bin_size=0.1):
     graph_one_array = []
     graph_two_array = []
-    graph_three_array = []
-    graph_four_array = []
+    graph_one_array_error = []
+    graph_two_array_error = []
+    color_graph = []
     min_value = 1.8 #Because of the uncertainty in the measurements for below 1.8 in velocity dispersion
     max_value = 0.0
     f = open(main_data)
     main_csv_file = csv.reader(f)
     next(main_csv_file)
     for line in main_csv_file:
-        graph_one_array.append(float(line[column_one_to_graph]))
-        if column_two_to_graph is not None:
+        if line[column_one_to_graph] is not '' and line[column_two_to_graph] is not '':
+            graph_one_array.append(float(line[column_one_to_graph]))
+        if column_two_to_graph is not None and line[column_two_to_graph] is not '' and line[column_one_to_graph] is not '':
             graph_two_array.append(float(line[column_two_to_graph]))
-        if column_three_to_graph is not None:
-            graph_three_array.append(float(line[column_three_to_graph]))
-        if column_four_to_graph is not None:
-            graph_four_array.append(float(line[column_four_to_graph]))
+        if column_one_error_to_graph is not None and line[column_one_to_graph] is not '' and line[column_two_to_graph] is not '':
+            graph_one_array_error.append(float(line[column_one_error_to_graph]))
+        if column_two_error_to_graph is not None and line[column_two_to_graph] is not '' and line[column_one_to_graph] is not '':
+            graph_two_array_error.append(float(line[column_two_error_to_graph]))
+        if column_two_error_to_graph is not None and line[column_two_to_graph] is not '' and line[column_one_to_graph] is not '':
+            color_graph.append((float(line[color_column])))
 
-        if second_data is not None: #Implies that the rest are empty as well
+    sorted_color_graph = sorted(color_graph)
+
+    print graph_one_array
+    print graph_one_array_error
+    print graph_two_array
+    print graph_two_array_error
+    #pyplot.scatter(graph_one_array, graph_two_array)
+    pyplot.errorbar(xerr=graph_one_array_error, yerr=graph_two_array_error)
+    pyplot.show()
+'''
+        if second_data is None: #Implies that the rest are empty as well
             x_values = np.arange(min_value, max_value, bin_size)
             fig_col_1 = pyplot.figure(1)
             fig_col_1.scatter(x_values, column_one_to_graph)
             if column_two_to_graph is not None:
                 fig_col_2 = pyplot.figure(2)
                 fig_col_2.scatter(x_values, column_two_to_graph)
-            if column_three_to_graph is not None:
-                fig_col_3 = pyplot.figure(3)
-                fig_col_3.scatter(x_values, column_three_to_graph)
-            if column_four_to_graph is not None:
-                fig_col_4 = pyplot.figure(4)
-                fig_col_4.scatter(x_values, column_four_to_graph)
+            if column_one_error_to_graph is not None:
+                graph_one_array_error.append(float(column_one_error_to_graph))
+            if column_two_error_to_graph is not None:
+                graph_two_array_error.append(float(column_two_error_to_graph))
 
-        if third_data is not None: #Implies that the rest are empty as well
+        elif third_data is None: #Implies that the rest are empty as well
             x_values = np.arange(min_value, max_value, bin_size)
             fig_col_1 = pyplot.figure(1)
             fig_col_1.scatter(x_values, column_one_to_graph)
             if column_two_to_graph is not None:
                 fig_col_2 = pyplot.figure(2)
                 fig_col_2.scatter(x_values, column_two_to_graph)
-            if column_three_to_graph is not None:
-                fig_col_3 = pyplot.figure(3)
-                fig_col_3.scatter(x_values, column_three_to_graph)
-            if column_four_to_graph is not None:
-                fig_col_4 = pyplot.figure(4)
-                fig_col_4.scatter(x_values, column_four_to_graph)
 
             fig2_col_1 = pyplot.figure(21)
             fig2_col_1.scatter(x_values, column_one_to_graph)
             if column_two_to_graph is not None:
                 fig2_col_2 = pyplot.figure(22)
                 fig2_col_2.scatter(x_values, column_two_to_graph)
-            if column_three_to_graph is not None:
-                fig2_col_3 = pyplot.figure(23)
-                fig2_col_3.scatter(x_values, column_three_to_graph)
-            if column_four_to_graph is not None:
-                fig2_col_4 = pyplot.figure(24)
-                fig2_col_4.scatter(x_values, column_four_to_graph)
+'''
+
+
+
+create_line_indices_graph('STest', "Test One", "Test Two", column_one_to_graph=l_sigma, column_two_to_graph=l_h_beta_em, column_one_error_to_graph=e_l_sigma, column_two_error_to_graph=e_l_h_beta_em)
